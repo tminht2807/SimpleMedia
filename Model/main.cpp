@@ -1,13 +1,17 @@
 #include "File.hpp"
 
-int main(){
-    File demo("KhoiThuocDoiCho-JimmiiNguyen-7990799.mp3");
+int main() {
+    File demo("1.mp3");
     demo.Play();
-    std::cout << "Threading successfully" << std::endl;
-    char cmd;
 
+    char cmd;
     while (true) {
+        // Print the input prompt
+        std::cout << "> " << std::flush;
+
+        // Read user input
         std::cin >> cmd;
+
         if (cmd == 'p') {
             demo.Pause();
         } else if (cmd == 'q') {

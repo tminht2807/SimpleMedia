@@ -28,6 +28,8 @@ protected:
     std::chrono::steady_clock::time_point StartTime; // Start time of playback
     double CurrentTime; // Current playback time in seconds
     bool isPaused;
+    bool isFinished;
+    std::chrono::steady_clock::time_point PauseTime; // Time when playback was paused
 public:
     File(const std::string& _filePath);
 
@@ -75,4 +77,10 @@ public:
     * @brief Stop the media file playback.
     */
     void Stop();
+
+    /**
+    * @brief Get the state finished or not does the media.
+    * @return true if finished, false if not.
+    */
+    bool Get_isFinished() const;
 };
