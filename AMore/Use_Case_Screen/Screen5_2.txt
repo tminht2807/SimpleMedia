@@ -1,0 +1,24 @@
+=============================================== MEDIA PLAYER ===============================================
+
+List of Media in index. "name of PlayList"
+    1.
+    2.
+    3.
+
+'0'. Return
+
+=============================================== CURRENT MEDIA ===============================================
+Current Playing From PlayList: index. "name of PlayList"
+PlayList Media:
+    1.
+    2.
+    3.
+
+
+Current Media: index. "name of File"
+Metadata: 
+    'p': Pause/Resume
+    'n': next in PlayList
+    'b': previous in PlayList
+
+>> Enter: 

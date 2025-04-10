@@ -184,19 +184,17 @@ bool IController::AddMediaFilesFromFolder(const std::string& folderPath) {
 bool IController::NextMedia() {
     if (currentIndex + 1 < mediaFiles.size()) {
         currentIndex++;
-        return PlayMedia(currentIndex);
     } else {
-        std::cerr << "No next media file available." << std::endl;
-        return false;
+        currentIndex = 0; // Loop back to the first media file
     }
+    return PlayMedia(currentIndex);
 }
 // Previous Media Method
 bool IController::PrevMedia() {
     if (currentIndex - 1 >= 0) {
         currentIndex--;
-        return PlayMedia(currentIndex);
     } else {
-        std::cerr << "No previous media file available." << std::endl;
-        return false;
+        currentIndex = mediaFiles.size() - 1; // Loop back to the last media file
     }
+    return PlayMedia(currentIndex);
 }
