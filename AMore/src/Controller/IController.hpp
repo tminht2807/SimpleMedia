@@ -1,3 +1,4 @@
+#pragma once
 #include "../View/IView.hpp"
 #include "../Model/Model.hpp"
 
@@ -22,8 +23,6 @@ public:
 
     virtual void updateView(Model& _model);
 
-    virtual void HandleCases();
-
     // **Switch Controller Type While Keeping Shared Model**
     static IController* toControllerList(Model& _model);
 
@@ -31,12 +30,7 @@ public:
 
     static IController* toControllerPlayList(Model& _model);
 
-    // **Get the current instance of IController**
-    static IController* getInstance();
-
-    Model& getModel() {
-        return model;
-    }
+    static IController* toIController(Model& _model);
 
     virtual ~IController() = default;
 };

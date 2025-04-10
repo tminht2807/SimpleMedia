@@ -13,6 +13,20 @@ Model::Model() : current_File_Index(0), current_PlayList_Index(0), isPlaying(fal
     }
     isPlaying = false;
     currentMusic = nullptr;
+    
+    // Initialize the first playlist
+    // List_PlayList.push_back(std::make_shared<PlayList>("Current Directory"));
+
+    // capture current folder where program executed directory
+    std::string currentDirectory = std::filesystem::current_path().string();
+    std::shared_ptr<PlayList> currentDirectoryPlaylist = std::make_shared<PlayList>(currentDirectory);
+    List_PlayList.push_back(currentDirectoryPlaylist);
+    for (const auto& entry : std::filesystem::directory_iterator(currentDirectory)) {
+        if (entry.path().extension() == ".mp3") {
+            std::shared_ptr<File> newFile = std::make_shared<File>(entry.path().string());
+            currentDirectoryPlaylist->addFile(newFile);
+        }
+    }
 }
 
 // Method to get the list of playlists

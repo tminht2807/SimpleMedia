@@ -5,9 +5,7 @@ PlayList::PlayList(const std::string& _name) : PlayListName(_name) {}
 
 // Method to get a file from the vector by index
 std::shared_ptr<File> PlayList::getFile(int _index) {
-    if (_index >= 0 && _index < Files.size()) {
         return Files[_index];
-    }
     return nullptr; // Return nullptr if index is out of bounds
 }
 

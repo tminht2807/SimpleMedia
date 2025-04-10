@@ -1,10 +1,12 @@
 #include "../Model/Model.hpp"
-
+#pragma once
 class IView {
 public:
-    virtual void displayPlaylists(const Model& model);
+    IView() = default;
 
     virtual void ShowScreen(Model& _model);
+
+    virtual void OptionScreen(Model& _model);
 
     virtual ~IView() = default;
 };

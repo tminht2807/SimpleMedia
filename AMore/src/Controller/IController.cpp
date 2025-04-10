@@ -22,8 +22,8 @@ IController* IController::toControllerPlayList(Model& _model) {
     return instance.get();
 }
 
-IController* IController::getInstance() {
-    // cast back instance to pointer of IController to use IView, not derived class of IView
+IController* IController::toIController(Model& _model) {
+    instance.reset(new IController(_model, std::make_shared<IView>()));
     return instance.get();
 }
 
