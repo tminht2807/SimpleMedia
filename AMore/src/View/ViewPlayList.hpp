@@ -3,5 +3,6 @@
 
 class ViewPlayList : public IView {
 public:
-    void ShowScreen(Model& _model) override;
+    ViewPlayList(Model& _model) : IView(_model) {};
+    void ShowCurrentPlayList();
 };

@@ -1,12 +1,15 @@
 #include "../Model/Model.hpp"
 #pragma once
 class IView {
+protected:
+    Model& model;  // **Shared model reference**
 public:
-    IView() = default;
+    IView(Model& _model) : model(_model) {};
 
-    virtual void ShowScreen(Model& _model);
+    void ShowScreen();
 
-    virtual void OptionScreen(Model& _model);
+    void Default1();
+    void Default2();
 
     virtual ~IView() = default;
 };

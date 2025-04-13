@@ -1,0 +1,21 @@
+=============================================== MEDIA PLAYER ===============================================
+
+Enter Index media file in current PlayList to play
+
+'0'. Return
+
+=============================================== CURRENT MEDIA ===============================================
+Current Playing From PlayList: index. "name of PlayList"
+PlayList Media:
+    1.
+    2.
+    3.
+
+
+Current Media: index. "name of File"
+Metadata: 
+    'p': Pause/Resume
+    'n': next in PlayList
+    'b': previous in PlayList
+
+>> Enter: 

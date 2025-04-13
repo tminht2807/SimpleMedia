@@ -2,6 +2,7 @@
 #include <string>
 
 struct MetadataMP3 {
+    // structure of MetadataMP3 using Taglib
     std::string Title;
     std::string Artist;
     std::string Album;
@@ -23,7 +24,16 @@ public:
     // Getters
     std::string getFilePath() const;
     MetadataMP3 getMetadata() const;
+    
+    double getDuration() const;
 
+    std::string getTitle() const;
+    std::string getArtist() const;
+    std::string getAlbum() const;
+    std::string getYear() const;
+    std::string getComment() const;
+    std::string getGenre() const;
+    
     // Setters
     void setFilePath(const std::string& _filePath);
     void setMetadata(const MetadataMP3& metadata);
