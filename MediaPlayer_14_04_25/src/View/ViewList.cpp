@@ -1,15 +1,15 @@
 #include "ViewList.hpp"
 
-void ViewList::Show_Screen(){
+void ViewList::Show_Screen(std::vector<std::string> _PlayList_Names){
     // system("clear"); // Clear the console
 
     std::cout << "=============================================== MEDIA PLAYER ===============================================" << std::endl;
     std::cout << "List of PlayList:" << std::endl;
     
     for (size_t i = 0 ; i <= 9; i++){
-        std::cout << "    " << i << ". " ;
-        if (i + page*10 < model.get_List_PlayList().size()){
-            std::cout << model.get_List_PlayList()[i + page*10]->get_PlayList_Name()
+        std::cout << "    '" << i << "'. " ;
+        if (i + page*10 < _PlayList_Names.size()){
+            std::cout << _PlayList_Names[i + page*10]
             << std::endl;
         }
         else std::cout << std::endl;
@@ -24,29 +24,6 @@ void ViewList::Show_Screen(){
     std::cout <<std::endl;
     std::cout << "    's': Play a PlayList above" << std::endl;
     std::cout <<std::endl;
-    std::cout << "    '0': Exit" << std::endl;
+    std::cout << "    'e': Exit" << std::endl;
     std::cout <<std::endl;
-
-    std::cout << "=============================================== CURRENT MEDIA ===============================================" << std::endl;
-    // show current media playing
-    std::cout << "Current PlayList: "
-    << model.getCurrentPlayListIndex() << ". "
-    << model.get_CurrentPlayList().get()->get_PlayList_Name()
-    << std::endl;
-
-    std::cout << "Current File: "
-    << model.getCurrentFileIndex() << ". "
-    << model.get_CurrentPlayList().get()->get_Files()[model.getCurrentFileIndex()]->getMetadata().Title
-    << std::endl;
-
-    std::cout << "Duration: " << model.get_CurrentPlayList().get()->get_Files()[model.getCurrentFileIndex()]->getMetadata().Duration
-    << std::endl;
-
-    std::cout << "    'p': Pause/Resume new PlayList" << std::endl;
-    std::cout << "    'n': Next Media in PlayList" << std::endl;
-    std::cout << "    'b': Previous Media in PlayList" << std::endl;
-    std::cout << std::endl;
-
-    std::cout << "Console: " << console << std::endl;
-    std::cout << ">> User: " ;
 }

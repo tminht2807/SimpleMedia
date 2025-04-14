@@ -1,30 +1,29 @@
 #include "ControllerMediaPlay.hpp"
 
-void ControllerMediaPlay::ControlPlayMedia(size_t _chooseFileIndex, size_t _choosePlayListIndex) {
-    model.setCurrentFileIndex(_chooseFileIndex);
-    model.setCurrentPlayListIndex(_choosePlayListIndex);
-    model.playCurrentFile();
+std::shared_ptr<ViewMediaPlay> ControllerMediaPlay::Get_View(){
+    return std::make_shared<ViewMediaPlay>(view);
 }
 
-void ControllerMediaPlay::ControlPauseResumeMedia() {
-    // Pause or resume the media
-    model.PauseResumeMedia();
+std::shared_ptr<File> ControllerMediaPlay::Get_File(){
+    return file;
 }
 
-void ControllerMediaPlay::ControlNextMedia() {
-    // Play the next media
-    model.NextMedia();
+void ControllerMediaPlay::Set_File(std::shared_ptr<File> _file){
+    this->file = _file;
+}
+void ControllerMediaPlay::Set_View(ViewMediaPlay _view){
+    this->view = _view;
 }
 
-void ControllerMediaPlay::ControlPreviousMedia() {
-    // Play the previous media
-    model.PrevMedia();
-}
+void ControllerMediaPlay::ControlPlayMedia(){
 
-std::shared_ptr<ViewMediaPlay> ControllerMediaPlay::getView() {
-    return centerView;
 }
+void ControllerMediaPlay::ControlPauseResumeMedia(){
 
-Model& ControllerMediaPlay::getModel() {
-    return model;
+}
+void ControllerMediaPlay::ControlNextMedia(){
+
+}
+void ControllerMediaPlay::ControlPreviousMedia(){
+
 }

@@ -2,10 +2,11 @@
 #pragma once
 
 class ViewMediaPlay : public IView {
-    std::shared_ptr<File> file;
 public:
-    ViewMediaPlay(std::shared_ptr<File> _file) : IView(), file(_file) {};
+    ViewMediaPlay() : IView(){};
     
-    void Show_Screen();
+    void Show_Screen(   std::string _Current_PlayList_Name, size_t _Current_PlayList_Index,
+                        std::string _Current_File_Title,    size_t _Current_File_Index,
+                        double _Duration);
 
 };

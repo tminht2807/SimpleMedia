@@ -1,32 +1,35 @@
 #include "PlayList.hpp"
-
-// Constructor to initialize the playlist with a name
-PlayList::PlayList(const std::string& _name) : PlayListName(_name) {
-    // 
+    
+// method to get Files
+std::vector<std::shared_ptr<File>> PlayList::Get_PlayList() const{
+    return List_Files;
 }
 
-// Method to get a file from the vector by index
-std::shared_ptr<File> PlayList::getFile(int _index) {
-        return Files[_index];
-    return nullptr; // Return nullptr if index is out of bounds
+// method to get a file from vector by index
+std::shared_ptr<File> PlayList::Get_A_File(int _index){
+    return List_Files[_index];
 }
 
-// Method to add a file to the vector
-void PlayList::addFile(std::shared_ptr<File> _file) {
-    Files.push_back(_file);
-}
-
-// Method to remove all files from the vector
-void PlayList::clear_PlayList() {
-    Files.clear();
-}
-
-// Method to get the playlist name
-std::string PlayList::get_PlayList_Name() {
+// method to get the playlist name
+std::string PlayList::Get_PlayList_Name(){
     return PlayListName;
 }
 
-// Method to remove a file from the vector
-void PlayList::removeFile(int _File_index) {
-    Files.erase(Files.begin() + _File_index);
+// method to add a file to the vector
+void PlayList::Add_File(std::shared_ptr<File> _file){
+    List_Files.push_back(_file);
+}
+
+// method to remove all List_files from the vector
+void PlayList::Clear_PlayList(){
+    List_Files.clear();
+}
+
+// method to remove a file from the vector
+void PlayList::Remove_File(int _File_index){
+    List_Files.erase(List_Files.begin() + _File_index);
+}
+
+void PlayList::Set_PlayList_Name(const std::string& _name){
+    this->PlayListName = _name;
 }

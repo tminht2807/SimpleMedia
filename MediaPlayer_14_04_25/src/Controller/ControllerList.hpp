@@ -4,16 +4,20 @@
 
 class ControllerList {
 protected:
-    Model& model;  // **Shared model reference**
+    std::shared_ptr<List> list;  // **Shared model reference**
 
-    std::shared_ptr<ViewList> centerView;
+    ViewList view;
 public:
-    ControllerList(Model& m, std::shared_ptr<ViewList> v) : model(m), centerView(v) {
+    ControllerList(std::shared_ptr<List> _list) : list(_list) {
         // Initialize the controller with the model
     }
     ~ControllerList() = default;
 
-    std::shared_ptr<ViewList> getView();
+    std::shared_ptr<ViewList> Get_View();
 
-    Model& getModel();    
+    std::shared_ptr<List> Get_List();
+
+    void Set_List(std::shared_ptr<List> _list);
+
+    void Set_View(ViewList _view);
 };

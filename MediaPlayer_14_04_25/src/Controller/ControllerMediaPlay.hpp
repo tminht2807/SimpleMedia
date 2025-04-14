@@ -1,23 +1,26 @@
 #pragma once
-#include "../Model/Model.hpp"
+#include "../Model/File.hpp"
 #include "../View/ViewMediaPlay.hpp"
 
 class ControllerMediaPlay  {
 protected:
-    Model& model;  // **Shared model reference**
+    std::shared_ptr<File> file;  // **Shared model reference**
 
-    std::shared_ptr<ViewMediaPlay> centerView;
+    ViewMediaPlay view;
 public:
-    ControllerMediaPlay(Model& m, std::shared_ptr<ViewMediaPlay> v) : model(m), centerView(v) {
+    ControllerMediaPlay(std::shared_ptr<File> _file) : file(_file){
         // Initialize the controller with the model
     }
+    ControllerMediaPlay();
     ~ControllerMediaPlay() = default;
 
-    std::shared_ptr<ViewMediaPlay> getView();
+    std::shared_ptr<ViewMediaPlay> Get_View();
+    std::shared_ptr<File> Get_File();
     
-    Model& getModel();
-
-    void ControlPlayMedia(size_t chooseFileIndex, size_t choosePlayListIndex);
+    void Set_File(std::shared_ptr<File> _file);
+    void Set_View(ViewMediaPlay _view);
+    
+    void ControlPlayMedia();
     void ControlPauseResumeMedia();
     void ControlNextMedia();
     void ControlPreviousMedia();

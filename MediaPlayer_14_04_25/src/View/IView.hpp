@@ -12,6 +12,8 @@ public:
     void Set_Page(size_t _page);
     size_t Get_Page();
 
+    void Show_Screen();
+
     void Set_Console(std::string _temp_console);
 
     virtual ~IView() = default;

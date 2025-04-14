@@ -15,3 +15,8 @@ size_t IView::Get_Page(){
 void IView::Set_Console(std::string _temp_console){
     this->console = _temp_console;
 }
+
+void IView::Show_Screen(){
+    std::cout << "Console: " << console << std::endl;
+    std::cout << ">> User: " ;
+}

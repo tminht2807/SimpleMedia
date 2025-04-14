@@ -1,17 +1,18 @@
 #include "ViewPlayList.hpp"
 
-void ViewPlayList::Show_Screen(){
+void ViewPlayList::Show_Screen( std::vector<std::string> _Files_Title, 
+                                std::string _PlayList_Name, size_t _PlayList_Index) {
     // system("clear"); // Clear the console
 
     std::cout << "=============================================== MEDIA PLAYER ===============================================" << std::endl;
     std::cout << "PlayList:" 
-    << model.get_PlayList(_PlayList_Index) << ". " 
-    << model.get_PlayList(_PlayList_Index).get()->get_PlayList_Name() <<std::endl;
+    << _PlayList_Index << ". " 
+    << _PlayList_Name << std::endl;
     
     for (size_t i = 0 ; i <= 9; i++){
-        std::cout << "    " << i << ". " ;
-        if (i + page*10 < model.get_PlayList(_PlayList_Index).get()->get_Files().size()){
-            std::cout << model.get_PlayList(_PlayList_Index).get()->get_Files()[i + page*10].get()->getTitle()
+        std::cout << "    '" << i << "'. " ;
+        if (i + page*10 < _Files_Title.size()){
+            std::cout << _Files_Title[i + page*10]
             << std::endl;
         }
         else std::cout << std::endl;
@@ -25,29 +26,6 @@ void ViewPlayList::Show_Screen(){
     std::cout <<std::endl;
     std::cout << "    's': Play a Media above" << std::endl;
     std::cout <<std::endl;
-    std::cout << "    '0': Return" << std::endl;
+    std::cout << "    'e': Return" << std::endl;
     std::cout <<std::endl;
-
-    std::cout << "=============================================== MEDIA PLAYER ===============================================" << std::endl;
-    // show current media playing
-    std::cout << "Current PlayList: "
-    << model.getCurrentPlayListIndex() << ". "
-    << model.get_CurrentPlayList().get()->get_PlayList_Name()
-    << std::endl;
-
-    std::cout << "Current File: "
-    << model.getCurrentFileIndex() << ". "
-    << model.get_CurrentPlayList().get()->get_Files()[model.getCurrentFileIndex()]->getMetadata().Title
-    << std::endl;
-
-    std::cout << "Duration: " << model.get_CurrentPlayList().get()->get_Files()[model.getCurrentFileIndex()]->getMetadata().Duration
-    << std::endl;
-
-    std::cout << "    'p': Pause/Resume new PlayList" << std::endl;
-    std::cout << "    'n': Next Media in PlayList" << std::endl;
-    std::cout << "    'b': Previous Media in PlayList" << std::endl;
-    std::cout << std::endl;
-
-    std::cout << "Console: " << console << std::endl;
-    std::cout << ">> User: " ;
 }

@@ -1,4 +1,4 @@
-#include "../Model/Model.hpp"
+#include "../Model/List.hpp"
 
 #include "../View/IView.hpp"
 #include "../View/ViewMediaPlay.hpp"
@@ -8,31 +8,37 @@
 #include "ControllerList.hpp"
 #include "ControllerMediaPlay.hpp"
 #include "ControllerPlayList.hpp"
-#include "IController.hpp"
 
 enum {
     PAUSE_RESUME_MEDIA = 'p',
     NEXT_MEDIA = 'n',
     PREV_MEDIA = 'b',
+
     NEXT_PAGE = 'k',
     PREV_PAGE = 'j',
-    CHANGE_DIR = 'c'
+
+    CHANGE_DIR = 'c',
+    ADD_NEW = 'a',
+    DEL_FROM = 'd',
+
+    START_PLAY = 's',
+
+    EXIT_RETURN = 'e'
 };
 
 class AppController {
-private:
-    Model model;
-    
+private:    
+    std::shared_ptr<List> list;
+
     ControllerMediaPlay controllerMediaPlay;
     ControllerPlayList controllerPlayList;
     ControllerList controllerList;
-    IController icontroller;
 public:
-    AppController() : model(), controllerMediaPlay(model, std::make_shared<ViewMediaPlay>(model)), 
-                      controllerPlayList(model, std::make_shared<ViewPlayList>(model)), 
-                      controllerList(model, std::make_shared<ViewList>(model)),
-                      icontroller(model, std::make_shared<IView>(model)) {
-        // Initialize the controller with the model
-    }
+    AppController(std::shared_ptr<List> _list):
+        list(_list),
+        controllerList(_list),
+        controllerPlayList(controllerList.Get_List().get()->Get_A_PlayList(0)),
+        controllerMediaPlay()
+        {}
     void run();
 };

@@ -22,19 +22,22 @@ public:
     File(const std::string& filePath);
 
     // Getters
-    std::string getFilePath() const;
-    MetadataMP3 getMetadata() const;
-    
-    double getDuration() const;
-
-    std::string getTitle() const;
-    std::string getArtist() const;
-    std::string getAlbum() const;
-    std::string getYear() const;
-    std::string getComment() const;
-    std::string getGenre() const;
+    std::string Get_FilePath() const;
+    double Get_Duration() const;
+    std::string Get_Title() const;
+    std::string Get_Artist() const;
+    std::string Get_Album() const;
+    std::string Get_Year() const;
+    std::string Get_Comment() const;
+    std::string Get_Genre() const;
     
     // Setters
-    void setFilePath(const std::string& _filePath);
-    void setMetadata(const MetadataMP3& metadata);
+    void Set_FilePath(const std::string& _filePath);
+    void Set_Duration(const double _Duration);
+    void Set_Title(const std::string& _Title);
+    void Set_Artist(const std::string& _Artist);
+    void Set_Album(const std::string& _Album);
+    void Set_Year(const std::string& _Year);
+    void Set_Comment(const std::string& _Comment);
+    void Set_Genre(const std::string& _Genre);
 };

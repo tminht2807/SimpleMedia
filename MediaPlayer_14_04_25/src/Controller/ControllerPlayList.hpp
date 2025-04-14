@@ -7,14 +7,16 @@ protected:
     std::shared_ptr<PlayList> playlist;
     ViewPlayList view;
 public:
-    ControllerPlayList(PlayList& pl, ViewPlayList v) : playlist(pl), view(v) {
+    ControllerPlayList(std::shared_ptr<PlayList> _playlist) : playlist(_playlist) {
         // Initialize the controller with the model
     }
     ~ControllerPlayList() = default;
 
-    PlayList& Get_PlayList() ;
+    std::shared_ptr<PlayList> Get_PlayList();
 
-    ViewPlayList& Get_View();
+    std::shared_ptr<ViewPlayList> Get_View();
 
+    void Set_PlayList(std::shared_ptr<PlayList> _playlist);
 
+    void Set_View(ViewPlayList _view);
 };

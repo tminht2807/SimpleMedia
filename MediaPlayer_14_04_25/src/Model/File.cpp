@@ -26,52 +26,51 @@ File::File(const std::string& _filePath) : File_path(_filePath) {
     }
 }
 
-// Getter for File_path
-std::string File::getFilePath() const {
+    // Getters
+std::string File::Get_FilePath() const{
     return File_path;
 }
-
-// Getter for Metadata
-MetadataMP3 File::getMetadata() const {
-    return metadata;
-}
-
-// Setter for Metadata
-void File::setMetadata(const MetadataMP3& metadata) {
-    this->metadata = metadata;
-}
-
-// Getter for Duration
-double File::getDuration() const {
+double File::Get_Duration() const{
     return metadata.Duration;
 }
-
-// Getter for Title
-std::string File::getTitle() const {
+std::string File::Get_Title() const{
     return metadata.Title;
 }
-
-// Getter for Artist
-std::string File::getArtist() const {
+std::string File::Get_Artist() const{
     return metadata.Artist;
 }
-
-// Getter for Album
-std::string File::getAlbum() const {
+std::string File::Get_Album() const{
     return metadata.Album;
 }
-
-// Getter for Year
-std::string File::getYear() const {
+std::string File::Get_Year() const{
     return metadata.Year;
 }
-
-// Getter for Comment
-std::string File::getComment() const {
+std::string File::Get_Comment() const{
     return metadata.Comment;
 }
-
-// Getter for Genre
-std::string File::getGenre() const {
+std::string File::Get_Genre() const{
     return metadata.Genre;
+}
+
+// Setters
+void File::Set_Duration(const double _Duration){
+    metadata.Duration = _Duration;
+}
+void File::Set_Title(const std::string& _Title){
+    metadata.Title = _Title;
+}
+void File::Set_Artist(const std::string& _Artist){
+    metadata.Artist = _Artist;
+}
+void File::Set_Album(const std::string& _Album){
+    metadata.Album = _Album;
+}
+void File::Set_Year(const std::string& _Year){
+    metadata.Year = _Year;
+}
+void File::Set_Comment(const std::string& _Comment){
+    metadata.Comment = _Comment;
+}
+void File::Set_Genre(const std::string& _Genre){
+    metadata.Genre = _Genre;
 }

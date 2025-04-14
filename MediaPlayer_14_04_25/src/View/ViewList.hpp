@@ -3,9 +3,8 @@
 #pragma once
 
 class ViewList : public IView {
-    std::shared_ptr<List> list;
 public:
-    ViewList(List& _list) : IView(), list(_list){};
+    ViewList() : IView(){};
 
-    void Show_Screen();
+    void Show_Screen(std::vector<std::string> _PlayList_Names);
 };

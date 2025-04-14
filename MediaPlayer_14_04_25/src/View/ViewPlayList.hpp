@@ -2,9 +2,9 @@
 #pragma once
 
 class ViewPlayList : public IView {
-    std::shared_ptr<PlayList> playlist;
 public:
-    ViewPlayList(std::shared_ptr<PlayList> _playlist ) : IView(), playlist(_playlist) {};
+    ViewPlayList() : IView() {};
 
-    void Show_Screen();
+    void Show_Screen(std::vector<std::string> _Files_Title, 
+                    std::string _PlayList_Name, size_t _PlayList_Index);
 };
