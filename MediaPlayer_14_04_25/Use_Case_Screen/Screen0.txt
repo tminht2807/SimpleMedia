@@ -1,0 +1,23 @@
+=============================================== MEDIA PLAYER ===============================================
+List of PlayLists:
+    0. Current directory: 
+    1. 
+    2. 
+
+    'j': Next page
+    'k': Previous page
+    
+    'a': Add new PlayList
+    'd': Delete PlayList
+
+    'e': Exit program
+=============================================== CURRENT MEDIA ===============================================
+Current Playing From PlayList: index. "name of File"
+Current Media: index. "name of File"
+Duration: 
+    'p': Pause/Resume
+    'n': Next in PlayList
+    'b': Previous in PlayList
+
+>> Console: 
+>> User:  

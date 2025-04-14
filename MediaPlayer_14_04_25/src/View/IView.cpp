@@ -1,0 +1,17 @@
+#include "IView.hpp"
+
+void IView::Reset_Page(){
+    page = 0;
+}
+
+void IView::Set_Page(size_t _page){
+    this->page = _page;
+}
+
+size_t IView::Get_Page(){
+    return page;
+}
+
+void IView::Set_Console(std::string _temp_console){
+    this->console = _temp_console;
+}
