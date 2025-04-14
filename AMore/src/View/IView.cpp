@@ -1,5 +1,9 @@
 #include "IView.hpp"
 
+void IView::resetPage(){
+    page = 0;
+}
+
 void IView::ShowScreen(){
     Default1();
     // Optional part
@@ -21,40 +25,38 @@ void IView::ShowScreen(){
     std::cout << "'a'. add Media to PlayList in Media Library" << std::endl;
     std::cout << "'r'. remove Media from PlayList in Media Library" << std::endl;
     std::cout << "'c'. change current directory" << std::endl;
-    std::cout << std::endl;
-    std::cout << "'0'. Exit Media Player" << std::endl;
-    std::cout << std::endl;
-
+    
     Default2();
 }
 
+void IView::setConsole(std::string _temp_console){
+    this->console = _temp_console;
+}
+
+void IView::Default2(){
+    std::cout << std::endl;
+    std::cout << "'0'. Exit/Return" << std::endl;
+    std::cout << std::endl;
+    std::cout << "Console:" << console << std::endl;
+    std::cout << ">> Enter command: ";
+}
+
 void IView::Default1(){
-    system("clear"); // Clear the console
+    // system("clear"); // Clear the console
 
     std::cout << "=============================================== MEDIA PLAYER ===============================================" << std::endl;
-    std::cout << std::endl;
-}
-void IView::Default2(){
-    std::cout << "=============================================== CURRENT MEDIA ===============================================" << std::endl;
-    // Show current media playing 
-    std::cout << "Current PlayList: "  
+
+    // show current media playing
+    std::cout << "Current PlayList: "
+    << model.getCurrentPlayListIndex() << ". "
     << model.get_CurrentPlayList().get()->get_PlayList_Name()
     << std::endl;
-    // If current PlayList is empty
-    if (model.get_CurrentPlayList().get()->get_Files().empty()) {
-    std::cout << "No media in current PlayList" << std::endl;
-    return;
-    }
-    else {
-    std::cout << "Current Media: "  
-        << model.get_CurrentPlayList().get()->getFile(model.getCurrentFileIndex())->getMetadata().Title
-        << std::endl;
-    }
-    std::cout << "Duration: "
-    << model.get_CurrentPlayList().get()->getFile(model.getCurrentFileIndex())->getDuration()
+    std::cout << "Current File: "
+    << model.getCurrentFileIndex() << ". "
+    << model.get_CurrentPlayList().get()->get_Files()[model.getCurrentFileIndex()]->getMetadata().Title
     << std::endl;
-    
-    std::cout << std::endl;
+    std::cout << "Duration: " << model.get_CurrentPlayList().get()->get_Files()[model.getCurrentFileIndex()]->getMetadata().Duration
+    << std::endl;
 
-    std::cout << ">> Enter your command: ";
+    
 }

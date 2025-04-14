@@ -62,7 +62,7 @@ public:
     void Add_New_PlayList(std::string& _PlayList_Name);
 
     // add a file to List_PlayList[_PlayList_index]
-    void Add_A_File_To_PlayList(size_t _PlayList_index);
+    void Add_A_File_To_PlayList(size_t _PlayList_index,std::string file_path);
     
     // delete a file in List_PlayList[_PlayList_index]
     void Remove_From_PlayList(size_t _PlayList_index, size_t _File_index);

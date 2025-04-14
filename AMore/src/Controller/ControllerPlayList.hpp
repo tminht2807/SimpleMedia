@@ -13,11 +13,9 @@ public:
     }
     ~ControllerPlayList() = default;
 
-    Model& getModel() {
-        return model;
-    }
+    Model& getModel() ;
 
-    std::shared_ptr<ViewPlayList> getView(){
-        return centerView;
-    }
+    std::shared_ptr<ViewPlayList> getView();
+
+
 };

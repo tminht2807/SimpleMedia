@@ -13,11 +13,10 @@ public:
     }
     ~ControllerList() = default;
 
-    std::shared_ptr<ViewList> getView() {
-        return centerView;
-    }
+    std::shared_ptr<ViewList> getView();
 
-    Model& getModel() {
-        return model;
-    }
+    Model& getModel();
+
+    void Remove_A_PlayList(size_t _PlayList_index);
+    
 };

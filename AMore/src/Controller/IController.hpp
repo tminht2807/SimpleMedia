@@ -11,11 +11,7 @@ public:
     IController(Model& m, std::shared_ptr<IView> v) : model(m), centerView(v) {}
     ~IController() = default;
 
-    std::shared_ptr<IView> getView(){
-        return centerView;
-    }
+    std::shared_ptr<IView> getView();
 
-    Model& getModel() {
-        return model;
-    }
+    Model& getModel();
 };

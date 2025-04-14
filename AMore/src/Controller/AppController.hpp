@@ -10,9 +10,6 @@
 #include "ControllerPlayList.hpp"
 #include "IController.hpp"
 
-#define PLAY_CONTROLER (char[]){'p', 'n', 'b'}
-
-
 enum {
     PAUSE_RESUME_MEDIA = 'p',
     NEXT_MEDIA = 'n',
@@ -28,6 +25,7 @@ enum {
     ADD_TO_PLAYLIST = 'a',
     REMOVE_FROM_PLAYLIST = 'r',
     EXIT_OR_RETURN = '0',
+    NUM_EXIT_OR_RETURN = 0,
     CHANGE_CURRENT_DIRECTORY = 'c'
 };
 
@@ -40,7 +38,6 @@ private:
     ControllerList controllerList;
     IController icontroller;
 public:
-
     AppController() : model(), controllerMediaPlay(model, std::make_shared<ViewMediaPlay>(model)), 
                       controllerPlayList(model, std::make_shared<ViewPlayList>(model)), 
                       controllerList(model, std::make_shared<ViewList>(model)),
@@ -48,7 +45,9 @@ public:
         // Initialize the controller with the model
     }
     void PlayMediaInCurrentPlayList();
-    void PlayMediaInAPlayList();
-    
+    void PlayAPlayList();
+    void Show_A_PlayList_From_Media_Library();
+    void Del_A_PlayList();
+
     void run();
 };

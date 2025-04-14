@@ -20,8 +20,10 @@ Model::Model() : current_File_Index(0), current_PlayList_Index(0), isPlaying(fal
 
     // capture current folder and subfolder where program executed directory for .mp3 files
     std::string current_directory = std::filesystem::current_path().string();
-    std::shared_ptr<PlayList> newPlaylist = std::make_shared<PlayList>(current_directory);
-
+    // append "Current directory: " and current_directory variable to make "Current directory: (current_directory variable)"
+    // create a new PlayList with the name "Current directory: (current_directory variable)"
+    std::string playlistName = "Current directory: " + current_directory;
+    std::shared_ptr<PlayList> newPlaylist = std::make_shared<PlayList>(playlistName); // string append "Current directory: (current_directory variable)"
     List_PlayList.push_back(newPlaylist);
         // browse current_directory, for every file .mp3, create File and push back to the List_PlayList[0]
     for (const auto& entry : std::filesystem::recursive_directory_iterator(current_directory)) {
@@ -121,10 +123,7 @@ void Model::PauseResumeMedia(){
     }
 }
 
-void Model::Add_A_File_To_PlayList(size_t _PlayList_index){    
-    std::string file_path;
-    std::cin >> file_path;
-
+void Model::Add_A_File_To_PlayList(size_t _PlayList_index, std::string file_path){    
     if (std::filesystem::is_directory(file_path)) {
         for (const auto& entry : std::filesystem::recursive_directory_iterator(file_path)) {
             if (entry.path().extension() == ".mp3") {
