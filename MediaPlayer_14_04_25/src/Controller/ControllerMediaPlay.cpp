@@ -15,10 +15,11 @@ std::shared_ptr<PlayList> ControllerMediaPlay::Get_PlayList(){
 }
 
 std::string ControllerMediaPlay::Get_Current_PlayList_Name() const{
-    return playlist.get()->get_PlayList_Name();
+    return playlist.get()->Get_PlayList_Name();
 }
 std::string ControllerMediaPlay::Get_Current_File_Title() const{
-    return playlist.get()->getFile(current_File_Index).get()->getMetadata().Title;
+    if (playlist.get()->Get_PlayList().size() == 0) return "No media file";
+    else return playlist.get()->Get_A_File(current_File_Index).get()->Get_Title();
 }
 size_t ControllerMediaPlay::Get_Current_PlayList_Index() const{
     return current_PlayList_Index;
@@ -27,14 +28,17 @@ size_t ControllerMediaPlay::Get_Current_File_Index() const{
     return current_File_Index;
 }
 double ControllerMediaPlay::Get_Current_File_Duration() const{
-    return playlist.get()->getFile(current_File_Index).get()->getMetadata().Duration;
+    if (playlist.get()->Get_PlayList().size() == 0) return 0;
+    else return playlist.get()->Get_A_File(current_File_Index).get()->Get_Duration();
 }
 void ControllerMediaPlay::Set_Current_PlayList_Index(const size_t _PlayList_Index){
     this->current_PlayList_Index = _PlayList_Index;
 }
 
-void ControllerMediaPlay::Set_PlayList(std::shared_ptr<PlayList> _PlayList){
+void ControllerMediaPlay::Set_PlayList(std::shared_ptr<PlayList> _PlayList, size_t _PlayList_Index){
     this->playlist = _PlayList;
+    this->current_PlayList_Index =_PlayList_Index;
+    this->current_File_Index = 0;
 }
 
 void ControllerMediaPlay::Set_View(ViewMediaPlay _view){
@@ -42,17 +46,17 @@ void ControllerMediaPlay::Set_View(ViewMediaPlay _view){
 }
 
 void ControllerMediaPlay::ControlPlayMedia(){
-    if (Get_PlayList()){
-        currentMusic = Mix_LoadMUS(Get_PlayList().get()->getFile(current_File_Index).get()->getFilePath().c_str());
+    if (Get_PlayList().get()->Get_PlayList().size() != 0){
+        currentMusic = Mix_LoadMUS(Get_PlayList().get()->Get_A_File(current_File_Index).get()->Get_FilePath().c_str());
         if (currentMusic) {
             Mix_PlayMusic(currentMusic, 1);
             isPlaying = true;
             // Feature to play next file in the playlist if the current one ends
             Mix_HookMusicFinished(StaticOnMediaFinished);
         } 
-        else {
-            std::cerr << "Failed to load music: " << Mix_GetError() << std::endl;
-        }
+    }
+    else {
+        Get_View().get()->Set_Console("No media available in playlist");
     }
 }
 
@@ -77,12 +81,12 @@ void ControllerMediaPlay::ControlPauseResumeMedia(){
     }
 }
 void ControllerMediaPlay::ControlNextMedia(){
-    if (current_File_Index + 1 < playlist.get()->get_Files().size()) current_File_Index ++;
+    if (current_File_Index + 1 < playlist.get()->Get_PlayList().size()) current_File_Index ++;
     else current_File_Index = 0;
     ControlPlayMedia();
 }
 void ControllerMediaPlay::ControlPreviousMedia(){
-    if (current_File_Index == 0) current_File_Index = playlist.get()->get_Files().size() - 1;
+    if (current_File_Index == 0) current_File_Index = playlist.get()->Get_PlayList().size() - 1;
     else current_File_Index --;
     ControlPlayMedia();
 }

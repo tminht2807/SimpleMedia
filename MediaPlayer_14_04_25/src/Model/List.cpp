@@ -33,12 +33,11 @@ std::shared_ptr<PlayList> List::Get_A_PlayList(int _PlayList_Index) const{
 }
 
 // Add PlayList name _PlayList_Name to the List_PlayLists
-void List::Add_PlayList(std::string& _PlayList_Name){
+bool List::Add_PlayList(std::string& _PlayList_Name){
     // Check if the playlist name already exists
     for (const auto& playlist : List_PlayLists) {
         if (playlist->Get_PlayList_Name() == _PlayList_Name) {
-            std::cout << "Playlist with this name already exists!" << std::endl;
-            return;
+            return false;
         }
     }
 
@@ -46,6 +45,7 @@ void List::Add_PlayList(std::string& _PlayList_Name){
     auto newPlaylist = std::make_shared<PlayList>(_PlayList_Name);
     List_Names.push_back(_PlayList_Name);
     List_PlayLists.push_back(newPlaylist);
+    return true;
 }
 
 // delete the PlayList: List_PlayLists[_PlayList_index]

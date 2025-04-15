@@ -1,7 +1,7 @@
 #include "ViewList.hpp"
 
 void ViewList::Show_Screen(std::vector<std::string> _PlayList_Names){
-    // system("clear"); // Clear the console
+    system("clear"); // Clear the console
 
     std::cout << "=============================================== MEDIA PLAYER ===============================================" << std::endl;
     std::cout << "List of PlayList:" << std::endl;

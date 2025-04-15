@@ -2,7 +2,7 @@
 
 void ViewPlayList::Show_Screen( std::vector<std::string> _Files_Title, 
                                 std::string _PlayList_Name, size_t _PlayList_Index) {
-    // system("clear"); // Clear the console
+    system("clear"); // Clear the console
 
     std::cout << "=============================================== MEDIA PLAYER ===============================================" << std::endl;
     std::cout << "PlayList:" 

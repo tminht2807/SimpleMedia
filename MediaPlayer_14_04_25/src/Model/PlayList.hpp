@@ -4,6 +4,7 @@
 #include <vector>
 #include <memory>
 #include <iostream>
+#include <filesystem>
 
 class PlayList{
 private:
@@ -26,6 +27,9 @@ public:
     
     // method to add a file to the vector
     void Add_File(std::shared_ptr<File> _file);
+
+    // method to add media files from a directory
+    void Add_By_Directory(std::string _directory);
 
     // method to remove all files from the vector
     void Clear_PlayList();

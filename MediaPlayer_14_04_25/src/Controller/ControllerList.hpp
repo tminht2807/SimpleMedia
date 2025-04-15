@@ -1,5 +1,5 @@
 #pragma once
-#include "../Model/Model.hpp"
+#include "../Model/List.hpp"
 #include "../View/ViewList.hpp"
 
 class ControllerList {

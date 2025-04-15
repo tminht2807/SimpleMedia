@@ -8,9 +8,7 @@ protected:
     ViewPlayList view;
     size_t current_playlist_Index;
 public:
-    ControllerPlayList(std::shared_ptr<PlayList> _playlist) : playlist(_playlist),current_playlist_Index(0) {
-        // Initialize the controller with the model
-    }
+    ControllerPlayList() = default;
     ~ControllerPlayList() = default;
 
     void Show();
@@ -19,7 +17,7 @@ public:
 
     std::shared_ptr<ViewPlayList> Get_View();
 
-    void Set_PlayList(std::shared_ptr<PlayList> _playlist);
+    void Set_PlayList(std::shared_ptr<PlayList> _playlist, size_t _playlist_index);
 
     void Set_View(ViewPlayList _view);
 

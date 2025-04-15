@@ -1,5 +1,6 @@
 #pragma once
 #include "../Model/PlayList.hpp"
+#include "../View/ViewPlayList.hpp"
 #include "../View/ViewMediaPlay.hpp"
 
 #include <string>
@@ -11,7 +12,7 @@
 
 class ControllerMediaPlay  {
 protected:
-    static ControllerMediaPlay* fake_taxi;
+    inline static ControllerMediaPlay* fake_taxi = nullptr;
 
     std::shared_ptr<PlayList> playlist;  // **Shared model reference**
 
@@ -27,7 +28,7 @@ protected:
     // Flag to indicate if media is playing
     bool isPlaying;
 public:
-    ControllerMediaPlay(std::shared_ptr<PlayList> _playlist) : playlist(_playlist), current_PlayList_Index(0){
+    ControllerMediaPlay() {
         fake_taxi = this;
         // Initialize SDL2
         if (SDL_Init(SDL_INIT_AUDIO) < 0) {
@@ -38,13 +39,10 @@ public:
             std::cerr << "Failed to initialize SDL_mixer: " << Mix_GetError() << std::endl;
             SDL_Quit();
         }
+    
         isPlaying = false;
         currentMusic = nullptr;
-    
-        current_File_Index = 0;
-        current_PlayList_Index = 0;
     }
-    // ControllerMediaPlay();
     ~ControllerMediaPlay() = default;
 
     std::shared_ptr<ViewMediaPlay> Get_View();
@@ -58,7 +56,7 @@ public:
     double Get_Current_File_Duration() const;
     void Set_Current_PlayList_Index(const size_t _PlayList_Index);
     
-    void Set_PlayList(std::shared_ptr<PlayList> _playlist);
+    void Set_PlayList(std::shared_ptr<PlayList> _playlist, size_t _PlayList_Index);
     void Set_View(ViewMediaPlay _view);
     
     void ControlPlayMedia();

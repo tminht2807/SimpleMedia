@@ -28,7 +28,7 @@ enum {
 
 class AppController {
 private:    
-    std::shared_ptr<List> list;
+    // std::shared_ptr<List> list;
 
     std::shared_ptr<IView> viewConsole;
 
@@ -37,10 +37,8 @@ private:
     ControllerList controllerList;
 public:
     AppController(std::shared_ptr<List> _list):
-        list(_list),
-        controllerList(_list),
-        controllerPlayList(controllerList.Get_List().get()->Get_A_PlayList(0)),
-        controllerMediaPlay(controllerList.Get_List().get()->Get_A_PlayList(0))
+        // list(_list),
+        controllerList(_list)
     {}
 
     void run();
