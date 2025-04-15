@@ -1,5 +1,9 @@
 #include "ControllerList.hpp"
 
+void ControllerList::Show(){
+    view.Show_Screen(list.get()->Get_List_Names());
+}
+
 std::shared_ptr<ViewList> ControllerList::Get_View(){
     return std::make_shared<ViewList>(view);
 }

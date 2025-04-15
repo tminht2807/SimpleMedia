@@ -13,6 +13,8 @@ public:
     }
     ~ControllerList() = default;
 
+    void Show();
+
     std::shared_ptr<ViewList> Get_View();
 
     std::shared_ptr<List> Get_List();

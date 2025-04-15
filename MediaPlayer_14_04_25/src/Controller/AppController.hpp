@@ -30,6 +30,8 @@ class AppController {
 private:    
     std::shared_ptr<List> list;
 
+    std::shared_ptr<IView> viewConsole;
+
     ControllerMediaPlay controllerMediaPlay;
     ControllerPlayList controllerPlayList;
     ControllerList controllerList;
@@ -38,7 +40,9 @@ public:
         list(_list),
         controllerList(_list),
         controllerPlayList(controllerList.Get_List().get()->Get_A_PlayList(0)),
-        controllerMediaPlay()
-        {}
+        controllerMediaPlay(controllerList.Get_List().get()->Get_A_PlayList(0))
+    {}
+
     void run();
+    void change_run_on_playlist_mode();
 };

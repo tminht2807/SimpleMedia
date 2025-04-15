@@ -18,6 +18,7 @@ List::List(){
             defaultPlaylist->Add_File(file);
         }
     }
+    List_Names.push_back(playlist_name);
     List_PlayLists.push_back(defaultPlaylist);
 }
 
@@ -43,10 +44,15 @@ void List::Add_PlayList(std::string& _PlayList_Name){
 
     // Create a new playlist and add it to the list
     auto newPlaylist = std::make_shared<PlayList>(_PlayList_Name);
+    List_Names.push_back(_PlayList_Name);
     List_PlayLists.push_back(newPlaylist);
 }
 
 // delete the PlayList: List_PlayLists[_PlayList_index]
 void List::Remove_PlayList(size_t _PlayList_index){
     List_PlayLists.erase(List_PlayLists.begin() + _PlayList_index);
+}
+
+std::vector<std::string> List::Get_List_Names() const{
+    return List_Names;
 }

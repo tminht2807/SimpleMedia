@@ -1,5 +1,13 @@
 #include "PlayList.hpp"
     
+std::vector<std::string> PlayList::Get_List_Names(){
+    std::vector<std::string> temp;
+    for (const auto& entry : List_Files){
+        temp.push_back(entry.get()->Get_Title());
+    }
+    return temp;
+}
+
 // method to get Files
 std::vector<std::shared_ptr<File>> PlayList::Get_PlayList() const{
     return List_Files;

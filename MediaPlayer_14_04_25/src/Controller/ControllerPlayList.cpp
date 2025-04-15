@@ -1,5 +1,15 @@
 #include "ControllerPlayList.hpp"
 
+void ControllerPlayList::Set_Current_PlayList_Index(const size_t _playlist_index){
+    this->current_playlist_Index = _playlist_index;
+}
+
+
+void ControllerPlayList::Show(){
+    view.Show_Screen(playlist.get()->Get_List_Names(),
+    playlist.get()->get_PlayList_Name(), current_playlist_Index);
+}
+
 std::shared_ptr<PlayList> ControllerPlayList::Get_PlayList(){
     return playlist;
 }

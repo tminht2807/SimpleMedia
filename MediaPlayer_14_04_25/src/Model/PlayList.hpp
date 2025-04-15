@@ -21,6 +21,8 @@ public:
 
     // method to get the playlist name
     std::string Get_PlayList_Name();
+
+    std::vector<std::string> Get_List_Names();
     
     // method to add a file to the vector
     void Add_File(std::shared_ptr<File> _file);
