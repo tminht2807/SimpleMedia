@@ -27,3 +27,7 @@ void ViewList::Show_Screen(std::vector<std::string> _PlayList_Names){
     std::cout << "    'e': Exit" << std::endl;
     std::cout <<std::endl;
 }
+
+// void ViewList::Set_Page(size_t _page) {
+//     this->page = _page;
+// }

@@ -29,3 +29,7 @@ void ViewPlayList::Show_Screen( std::vector<std::string> _Files_Title,
     std::cout << "    'e': Return" << std::endl;
     std::cout <<std::endl;
 }
+
+// void ViewPlayList::Set_Page(size_t _page) {
+//     this->page = _page;
+// }

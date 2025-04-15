@@ -4,8 +4,8 @@ void ControllerList::Show(){
     view.Show_Screen(list.get()->Get_List_Names());
 }
 
-std::shared_ptr<ViewList> ControllerList::Get_View(){
-    return std::make_shared<ViewList>(view);
+ViewList* ControllerList::Get_View(){
+    return &view;
 }
 
 std::shared_ptr<List> ControllerList::Get_List(){

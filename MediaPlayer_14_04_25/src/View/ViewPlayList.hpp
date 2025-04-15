@@ -7,4 +7,7 @@ public:
 
     void Show_Screen(std::vector<std::string> _Files_Title, 
                     std::string _PlayList_Name, size_t _PlayList_Index);
+
+    // void Set_Page(size_t _page) override;
+
 };

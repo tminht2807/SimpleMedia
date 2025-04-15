@@ -18,7 +18,7 @@ List::List(){
             defaultPlaylist->Add_File(file);
         }
     }
-    List_Names.push_back(playlist_name);
+    // List_Names.push_back(playlist_name);
     List_PlayLists.push_back(defaultPlaylist);
 }
 
@@ -43,7 +43,7 @@ bool List::Add_PlayList(std::string& _PlayList_Name){
 
     // Create a new playlist and add it to the list
     auto newPlaylist = std::make_shared<PlayList>(_PlayList_Name);
-    List_Names.push_back(_PlayList_Name);
+    // List_Names.push_back(_PlayList_Name);
     List_PlayLists.push_back(newPlaylist);
     return true;
 }
@@ -51,8 +51,17 @@ bool List::Add_PlayList(std::string& _PlayList_Name){
 // delete the PlayList: List_PlayLists[_PlayList_index]
 void List::Remove_PlayList(size_t _PlayList_index){
     List_PlayLists.erase(List_PlayLists.begin() + _PlayList_index);
+    // List_Names.erase(List_Names.begin() + _PlayList_index);
 }
 
 std::vector<std::string> List::Get_List_Names() const{
-    return List_Names;
+    std::vector<std::string> temp;
+    for (const auto& playlist : List_PlayLists) {
+        temp.push_back(playlist->Get_PlayList_Name());
+    }
+    return temp;
 }
+
+// void List::Set_List_Names(std::string _New_Name, size_t _PlayList_index){
+//     List_Names[_PlayList_index] = _New_Name;
+// }

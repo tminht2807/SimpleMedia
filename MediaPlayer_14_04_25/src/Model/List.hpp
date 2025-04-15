@@ -8,7 +8,7 @@
 class List {
 protected:
     std::vector<std::shared_ptr<PlayList>> List_PlayLists; // Vector of playlists
-    std::vector<std::string> List_Names;
+    // std::vector<std::string> List_Names;
 public:
     // Constructor
     List();
@@ -20,6 +20,8 @@ public:
     std::vector<std::shared_ptr<PlayList>> Get_List() const;
 
     std::vector<std::string> Get_List_Names() const;
+
+    // void Set_List_Names(std::string _New_Name, size_t _PlayList_index);
 
     // Return a PlayList of input index
     std::shared_ptr<PlayList> Get_A_PlayList(int _PlayList_Index) const;
