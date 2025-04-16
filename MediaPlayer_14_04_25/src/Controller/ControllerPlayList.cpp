@@ -14,8 +14,8 @@ std::shared_ptr<PlayList> ControllerPlayList::Get_PlayList(){
     return playlist;
 }
 
-std::shared_ptr<ViewPlayList> ControllerPlayList::Get_View(){
-    return std::make_shared<ViewPlayList>(view);
+ViewPlayList* ControllerPlayList::Get_View(){
+    return &view;
 }
 
 void ControllerPlayList::Set_PlayList(std::shared_ptr<PlayList> _playlist, size_t _playlist_index){

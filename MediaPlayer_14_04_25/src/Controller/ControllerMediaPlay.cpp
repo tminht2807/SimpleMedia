@@ -1,7 +1,7 @@
 #include "ControllerMediaPlay.hpp"
 
-std::shared_ptr<ViewMediaPlay> ControllerMediaPlay::Get_View(){
-    return std::make_shared<ViewMediaPlay>(view);
+ViewMediaPlay* ControllerMediaPlay::Get_View(){
+    return &view;
 }
 
 void ControllerMediaPlay::Show(){
@@ -45,6 +45,16 @@ void ControllerMediaPlay::Set_View(ViewMediaPlay _view){
     this->view = _view;
 }
 
+void ControllerMediaPlay::ControlPlayMedia(std::shared_ptr<PlayList> _playlist, size_t _PlayList_Index){
+    Set_PlayList(_playlist,_PlayList_Index);
+    ControlPlayMedia();
+}
+void ControllerMediaPlay::ControlPlayMedia(std::shared_ptr<PlayList> _playlist, size_t _PlayList_Index, size_t _File_Index){
+    Set_PlayList(_playlist,_PlayList_Index);
+    this->current_File_Index = _File_Index;
+    ControlPlayMedia();
+}
+
 void ControllerMediaPlay::ControlPlayMedia(){
     if (Get_PlayList().get()->Get_PlayList().size() != 0){
         currentMusic = Mix_LoadMUS(Get_PlayList().get()->Get_A_File(current_File_Index).get()->Get_FilePath().c_str());
@@ -55,8 +65,16 @@ void ControllerMediaPlay::ControlPlayMedia(){
             Mix_HookMusicFinished(StaticOnMediaFinished);
         } 
     }
+
+    else if (Get_PlayList().get()->Get_PlayList().size() == 0 ){
+        // stop media playing at the moment
+        // Mix_FreeMusic(currentMusic);
+        Mix_HaltMusic();
+        Get_View()->Set_Console("No media available in playlist");
+    }
+
     else {
-        Get_View().get()->Set_Console("No media available in playlist");
+        Get_View()->Set_Console("No media available in playlist");
     }
 }
 
@@ -67,7 +85,7 @@ void ControllerMediaPlay::StaticOnMediaFinished(){
 
 // Method when Finished playing a media
 void ControllerMediaPlay::OnMediaFinished(){
-    Get_View().get()->Set_Console("Media finished playing.");
+    Get_View()->Set_Console("Media finished playing.");
     ControlNextMedia();
 }
 

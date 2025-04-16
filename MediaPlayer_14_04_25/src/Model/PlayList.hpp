@@ -31,6 +31,8 @@ public:
     // method to add media files from a directory
     void Add_By_Directory(std::string _directory);
 
+    void Add_By_File_Path(std::string _file_path);
+
     // method to remove all files from the vector
     void Clear_PlayList();
 

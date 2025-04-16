@@ -25,6 +25,12 @@ void PlayList::Add_By_Directory(std::string _directory){
     }
 }
 
+void PlayList::Add_By_File_Path(std::string _file_path){
+    auto file = std::make_shared<File>(_file_path);
+    List_Files.push_back(file);
+}
+
+
 // method to add a file to the vector
 void PlayList::Add_File(std::shared_ptr<File> _file){
     List_Files.push_back(_file);

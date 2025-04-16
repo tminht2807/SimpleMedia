@@ -15,7 +15,7 @@ public:
 
     std::shared_ptr<PlayList> Get_PlayList();
 
-    std::shared_ptr<ViewPlayList> Get_View();
+    ViewPlayList* Get_View();
 
     void Set_PlayList(std::shared_ptr<PlayList> _playlist, size_t _playlist_index);
 

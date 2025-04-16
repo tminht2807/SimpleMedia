@@ -18,7 +18,7 @@ void ViewMediaPlay::Show_Screen(std::string _Current_PlayList_Name, size_t _Curr
 
     std::cout << "Duration: " << _Duration << std::endl;
 
-    std::cout << "    'p': Pause/Resume new PlayList" << std::endl;
+    std::cout << "    'p': Pause/Resume current Media" << std::endl;
     std::cout << "    'n': Next Media in PlayList" << std::endl;
     std::cout << "    'b': Previous Media in PlayList" << std::endl;
     std::cout << std::endl;

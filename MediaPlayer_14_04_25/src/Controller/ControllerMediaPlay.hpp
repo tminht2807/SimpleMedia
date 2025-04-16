@@ -45,7 +45,7 @@ public:
     }
     ~ControllerMediaPlay() = default;
 
-    std::shared_ptr<ViewMediaPlay> Get_View();
+    ViewMediaPlay* Get_View();
     std::shared_ptr<PlayList> Get_PlayList();
     void Show();
 
@@ -60,6 +60,8 @@ public:
     void Set_View(ViewMediaPlay _view);
     
     void ControlPlayMedia();
+    void ControlPlayMedia(std::shared_ptr<PlayList> _playlist, size_t _PlayList_Index);
+    void ControlPlayMedia(std::shared_ptr<PlayList> _playlist, size_t _PlayList_Index, size_t _File_Index);
 
     // Method when Finished playing a media
     static void StaticOnMediaFinished();
