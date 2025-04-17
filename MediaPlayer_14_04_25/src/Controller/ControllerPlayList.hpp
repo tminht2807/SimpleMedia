@@ -22,4 +22,6 @@ public:
     void Set_View(ViewPlayList _view);
 
     void Set_Current_PlayList_Index(const size_t _playlist_index);
+
+    size_t Get_Current_PlayList_Index();
 };

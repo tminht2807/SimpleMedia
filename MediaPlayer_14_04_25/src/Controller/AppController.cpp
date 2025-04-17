@@ -288,7 +288,24 @@ void AppController::change_run_on_playlist_mode(){
                 break;
             }
             case START_PLAY:{
-
+                char temp;
+                do{
+                    viewConsole.get()->Set_Console("Enter number of above file to play!");
+                    controllerPlayList.Show();
+                    controllerMediaPlay.Show();
+                    viewConsole.get()->Show_Screen();
+                    std::cin >> temp;
+                    if      (temp == NEXT_MEDIA) controllerMediaPlay.ControlNextMedia();
+                    else if (temp == PAUSE_RESUME_MEDIA) controllerMediaPlay.ControlPauseResumeMedia();
+                    else if (temp == PREV_MEDIA) controllerMediaPlay.ControlPreviousMedia();
+                    else if (temp == EXIT_RETURN) { viewConsole.get()->Set_Console("Canceled deleting file!"); break;}
+                    else {
+                        size_t _file_index = temp - '0' + controllerPlayList.Get_View()->Get_Page()*10;
+                        controllerMediaPlay.ControlPlayMedia(   controllerPlayList.Get_PlayList(), 
+                                                                controllerPlayList.Get_Current_PlayList_Index(),
+                                                                _file_index);
+                    }
+                } while (temp == NEXT_MEDIA || temp == PAUSE_RESUME_MEDIA || temp == PREV_MEDIA);
                 break;
             }
             case PAUSE_RESUME_MEDIA:{

@@ -26,3 +26,7 @@ void ControllerPlayList::Set_PlayList(std::shared_ptr<PlayList> _playlist, size_
 void ControllerPlayList::Set_View(ViewPlayList _view){
     this->view = _view;
 }
+
+size_t ControllerPlayList::Get_Current_PlayList_Index(){
+    return current_playlist_Index;
+}
