@@ -61,9 +61,41 @@ void uartListener() {
             if (serial_port >= 0) {
 
                 isConnected = true;
+                // Clear the tty structure
+                memset(&tty, 0, sizeof(tty));
+
+                // Get current attributes
                 tcgetattr(serial_port, &tty);
-                cfsetspeed(&tty, B115200); // Set baud rate
+
+                // Set baud rate
+                cfsetispeed(&tty, B115200);
+                cfsetospeed(&tty, B115200);
+
+                // Configure 8N1 (8 data bits, no parity, 1 stop bit)
+                tty.c_cflag = (tty.c_cflag & ~CSIZE) | CS8; // 8 data bits
+                tty.c_cflag &= ~PARENB;                    // No parity
+                tty.c_cflag &= ~CSTOPB;                    // 1 stop bit
+                tty.c_cflag &= ~CRTSCTS;                   // No hardware flow control
+
+                // Enable receiver and set local mode
+                tty.c_cflag |= (CLOCAL | CREAD);
+
+                // Disable canonical mode, echo, and signal chars
+                tty.c_lflag &= ~(ICANON | ECHO | ECHOE | ISIG);
+
+                // Disable software flow control
+                tty.c_iflag &= ~(IXON | IXOFF | IXANY);
+
+                // Raw output
+                tty.c_oflag &= ~OPOST;
+
+                // Set read timeout (in deciseconds)
+                tty.c_cc[VMIN] = 1;  // Minimum number of characters to read
+                tty.c_cc[VTIME] = 1; // Timeout in deciseconds (0.1 seconds)
+
+                // Apply the attributes
                 tcsetattr(serial_port, TCSANOW, &tty);
+
 
                 std::cout << "Connected to serial port." << std::endl;
             }
@@ -99,6 +131,7 @@ void uartListener() {
         if (tcgetattr(serial_port, &tty) < 0){
             isConnected = false;
             close(serial_port);
+            serial_port = -1;
         } 
     }
 }
