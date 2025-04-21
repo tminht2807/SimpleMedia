@@ -166,17 +166,14 @@ void ControllerMediaPlay::uartListener() {
         int bytes_read = read(serial_port, &data, 1); // Read one byte
         
         if (bytes_read > 0) { // Ensure full byte is received
-            uint8_t play_pause = 0;
-            uint8_t nachste = 0;
 
-            this->volume= data & 0x3F;
-            play_pause  = data & 0x80;
-            nachste     = data & 0x40;
-
-            ControlChangeVolume(); // Change volume
-
-            if (play_pause != 0) ControlPauseResumeMedia();
-            if (nachste != 0) ControlNextMedia();
+            if (data == 0xBF) ControlPauseResumeMedia();
+            else if (data == 0x3F) ControlPreviousMedia();
+            else if (data == 0x7F) ControlNextMedia();
+            else {
+                this->volume = data & 0x3F; // match the volume value with the 0-5 bits of the data
+                ControlChangeVolume(); // Change volume
+            }
 
             tcflush(serial_port, TCIFLUSH);
         } 

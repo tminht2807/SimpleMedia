@@ -17,14 +17,14 @@ void ViewMediaPlay::Show_Screen(std::string _Current_PlayList_Name, size_t _Curr
     << std::endl;
     
     if (_isPlaying == true ) std::cout << "Playing" ;
-    else std::cout << "Paused" ;
+    else std::cout << "Paused";
     
-    uint16_t temp = static_cast<uint16_t>(_volume * (100 / 64));
+    uint16_t temp = static_cast<uint16_t>(_volume * 100 / 62);
     std::cout << "          || Duration: " << _Duration  
               << "          || Volume: " << temp << std::endl;
 
     if (_isConnected) std::cout << "Connected to board" << std::endl;
-    else std::cout << "Waiting for connection from board" << std::endl;
+    else std::cout << "Waiting for connection from board..." << std::endl;
     
     std::cout << std::endl;
     std::cout << "    'p': Pause/Resume current Media" << std::endl;
