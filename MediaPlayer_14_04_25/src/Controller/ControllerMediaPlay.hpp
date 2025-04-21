@@ -7,6 +7,14 @@
 #include <vector>
 #include <memory>
 #include <iostream>
+
+#include <thread>
+#include <stdint.h>
+#include <fcntl.h>
+#include <termios.h>
+#include <unistd.h>
+#include <bitset>
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_mixer.h>
 
@@ -27,7 +35,13 @@ protected:
 
     // Flag to indicate if media is playing
     bool isPlaying;
+
+    bool isConnected;
+
+    uint8_t volume; // Volume level (0-63)
 public:
+    void uartListener();
+
     ControllerMediaPlay() {
         fake_taxi = this;
         // Initialize SDL2
@@ -42,7 +56,11 @@ public:
     
         isPlaying = false;
         currentMusic = nullptr;
+
+        std::thread uartThread(&ControllerMediaPlay::uartListener, this);
+        uartThread.detach(); // Run in background
     }
+
     ~ControllerMediaPlay() = default;
 
     ViewMediaPlay* Get_View();
@@ -72,4 +90,6 @@ public:
     void ControlPauseResumeMedia();
     void ControlNextMedia();
     void ControlPreviousMedia();
+    void ControlChangeVolume();
+
 };
